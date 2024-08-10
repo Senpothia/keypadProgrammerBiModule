@@ -225,17 +225,17 @@ public class Interface extends javax.swing.JFrame implements Observer {
         btnOK = new javax.swing.JButton();
         btnNOK = new javax.swing.JButton();
         btnACQ = new javax.swing.JButton();
-        voyant1 = new javax.swing.JLabel();
-        progBarre1 = new javax.swing.JProgressBar();
-        testBarre1 = new javax.swing.JProgressBar();
-        console1 = new javax.swing.JLabel();
-        btnLancer1 = new javax.swing.JButton();
-        btnOK1 = new javax.swing.JButton();
-        btnNOK1 = new javax.swing.JButton();
+        voyantSlave = new javax.swing.JLabel();
+        progBarreSlave = new javax.swing.JProgressBar();
+        testBarreSlave = new javax.swing.JProgressBar();
+        consoleSlave = new javax.swing.JLabel();
+        btnLancerSlave = new javax.swing.JButton();
+        btnOKSlave = new javax.swing.JButton();
+        btnNOKSlave = new javax.swing.JButton();
         btnACQ1 = new javax.swing.JButton();
-        btnProg1 = new javax.swing.JButton();
-        btnEffacer1 = new javax.swing.JButton();
-        btnTester1 = new javax.swing.JButton();
+        btnProgSlave = new javax.swing.JButton();
+        btnEffacerSlave = new javax.swing.JButton();
+        btnTesterSlave = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JSeparator();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuParametres = new javax.swing.JMenu();
@@ -535,7 +535,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
             }
         });
 
-        version.setText("V2.0");
+        version.setText("V3.0");
 
         StatutRS232Lab.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         StatutRS232Lab.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -606,56 +606,56 @@ public class Interface extends javax.swing.JFrame implements Observer {
             }
         });
 
-        voyant1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        voyantSlave.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        progBarre1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        progBarre1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        progBarre1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        progBarre1.setOpaque(true);
-        progBarre1.setStringPainted(true);
+        progBarreSlave.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        progBarreSlave.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        progBarreSlave.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        progBarreSlave.setOpaque(true);
+        progBarreSlave.setStringPainted(true);
 
-        testBarre1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        testBarre1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        testBarre1.setStringPainted(true);
+        testBarreSlave.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        testBarreSlave.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        testBarreSlave.setStringPainted(true);
 
-        console1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        console1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        console1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        console1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        consoleSlave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        consoleSlave.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        consoleSlave.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        consoleSlave.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        btnLancer1.setBackground(new java.awt.Color(255, 255, 255));
-        btnLancer1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnLancer1.setForeground(new java.awt.Color(51, 153, 0));
-        btnLancer1.setText("LANCER");
-        btnLancer1.setBorderPainted(false);
-        btnLancer1.setContentAreaFilled(false);
-        btnLancer1.addActionListener(new java.awt.event.ActionListener() {
+        btnLancerSlave.setBackground(new java.awt.Color(255, 255, 255));
+        btnLancerSlave.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnLancerSlave.setForeground(new java.awt.Color(51, 153, 0));
+        btnLancerSlave.setText("LANCER");
+        btnLancerSlave.setBorderPainted(false);
+        btnLancerSlave.setContentAreaFilled(false);
+        btnLancerSlave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLancer1ActionPerformed(evt);
+                btnLancerSlaveActionPerformed(evt);
             }
         });
 
-        btnOK1.setBackground(new java.awt.Color(255, 255, 255));
-        btnOK1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnOK1.setForeground(new java.awt.Color(51, 0, 255));
-        btnOK1.setText("OK");
-        btnOK1.setBorderPainted(false);
-        btnOK1.setContentAreaFilled(false);
-        btnOK1.addActionListener(new java.awt.event.ActionListener() {
+        btnOKSlave.setBackground(new java.awt.Color(255, 255, 255));
+        btnOKSlave.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnOKSlave.setForeground(new java.awt.Color(51, 0, 255));
+        btnOKSlave.setText("OK");
+        btnOKSlave.setBorderPainted(false);
+        btnOKSlave.setContentAreaFilled(false);
+        btnOKSlave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOK1ActionPerformed(evt);
+                btnOKSlaveActionPerformed(evt);
             }
         });
 
-        btnNOK1.setBackground(new java.awt.Color(255, 255, 255));
-        btnNOK1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnNOK1.setForeground(new java.awt.Color(255, 0, 0));
-        btnNOK1.setText("NOK");
-        btnNOK1.setBorderPainted(false);
-        btnNOK1.setContentAreaFilled(false);
-        btnNOK1.addActionListener(new java.awt.event.ActionListener() {
+        btnNOKSlave.setBackground(new java.awt.Color(255, 255, 255));
+        btnNOKSlave.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnNOKSlave.setForeground(new java.awt.Color(255, 0, 0));
+        btnNOKSlave.setText("NOK");
+        btnNOKSlave.setBorderPainted(false);
+        btnNOKSlave.setContentAreaFilled(false);
+        btnNOKSlave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNOK1ActionPerformed(evt);
+                btnNOKSlaveActionPerformed(evt);
             }
         });
 
@@ -671,38 +671,38 @@ public class Interface extends javax.swing.JFrame implements Observer {
             }
         });
 
-        btnProg1.setBackground(new java.awt.Color(255, 255, 255));
-        btnProg1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnProg1.setForeground(new java.awt.Color(51, 153, 0));
-        btnProg1.setText("PROGRAMMER");
-        btnProg1.setBorderPainted(false);
-        btnProg1.setContentAreaFilled(false);
-        btnProg1.addActionListener(new java.awt.event.ActionListener() {
+        btnProgSlave.setBackground(new java.awt.Color(255, 255, 255));
+        btnProgSlave.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnProgSlave.setForeground(new java.awt.Color(51, 153, 0));
+        btnProgSlave.setText("PROGRAMMER");
+        btnProgSlave.setBorderPainted(false);
+        btnProgSlave.setContentAreaFilled(false);
+        btnProgSlave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProg1ActionPerformed(evt);
+                btnProgSlaveActionPerformed(evt);
             }
         });
 
-        btnEffacer1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnEffacer1.setForeground(new java.awt.Color(255, 51, 51));
-        btnEffacer1.setText("EFFACER");
-        btnEffacer1.setBorderPainted(false);
-        btnEffacer1.setContentAreaFilled(false);
-        btnEffacer1.addActionListener(new java.awt.event.ActionListener() {
+        btnEffacerSlave.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnEffacerSlave.setForeground(new java.awt.Color(255, 51, 51));
+        btnEffacerSlave.setText("EFFACER");
+        btnEffacerSlave.setBorderPainted(false);
+        btnEffacerSlave.setContentAreaFilled(false);
+        btnEffacerSlave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEffacer1ActionPerformed(evt);
+                btnEffacerSlaveActionPerformed(evt);
             }
         });
 
-        btnTester1.setBackground(new java.awt.Color(255, 255, 255));
-        btnTester1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnTester1.setForeground(new java.awt.Color(51, 0, 255));
-        btnTester1.setText("TESTER");
-        btnTester1.setBorderPainted(false);
-        btnTester1.setContentAreaFilled(false);
-        btnTester1.addActionListener(new java.awt.event.ActionListener() {
+        btnTesterSlave.setBackground(new java.awt.Color(255, 255, 255));
+        btnTesterSlave.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnTesterSlave.setForeground(new java.awt.Color(51, 0, 255));
+        btnTesterSlave.setText("TESTER");
+        btnTesterSlave.setBorderPainted(false);
+        btnTesterSlave.setContentAreaFilled(false);
+        btnTesterSlave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTester1ActionPerformed(evt);
+                btnTesterSlaveActionPerformed(evt);
             }
         });
 
@@ -901,75 +901,75 @@ public class Interface extends javax.swing.JFrame implements Observer {
                                     .addComponent(StatutRS232Lab, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(statutRs232, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(statutPRGLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(statutPRGLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(consoleSlave, javax.swing.GroupLayout.PREFERRED_SIZE, 714, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(version)
-                        .addGap(26, 26, 26))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(270, 270, 270)
-                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(testBarre1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(progBarre, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE))
-                                .addGap(92, 92, 92))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(voyant, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(376, 376, 376))))))
+                        .addGap(26, 26, 26))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(console1, javax.swing.GroupLayout.PREFERRED_SIZE, 714, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(106, 106, 106)
-                        .addComponent(console, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(100, 100, 100)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(testBarre, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(46, 46, 46)
+                                        .addComponent(btnEffacer, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(62, 62, 62)
+                                        .addComponent(btnProg, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(43, 43, 43)
+                                        .addComponent(btnTester, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnNOK, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(52, 52, 52)
+                                        .addComponent(btnLancer, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(45, 45, 45)
+                                        .addComponent(btnOK, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(39, 39, 39)
+                                        .addComponent(btnACQ, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(progBarre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(85, 85, 85)
+                                .addComponent(console, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(76, 76, 76))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(voyant, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(339, 339, 339)))
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(progBarre1, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(testBarre, javax.swing.GroupLayout.PREFERRED_SIZE, 662, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(46, 46, 46)
-                                    .addComponent(btnEffacer, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(62, 62, 62)
-                                    .addComponent(btnProg, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(43, 43, 43)
-                                    .addComponent(btnTester, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnNOK, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(52, 52, 52)
-                                    .addComponent(btnLancer, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(45, 45, 45)
-                                    .addComponent(btnOK, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(39, 39, 39)
-                                    .addComponent(btnACQ, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(118, 118, 118)
+                        .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(46, 46, 46)
-                                .addComponent(btnEffacer1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnEffacerSlave, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(62, 62, 62)
-                                .addComponent(btnProg1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnProgSlave, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(43, 43, 43)
-                                .addComponent(btnTester1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnTesterSlave, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnNOK1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnNOKSlave, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(52, 52, 52)
-                                .addComponent(btnLancer1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnLancerSlave, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(45, 45, 45)
-                                .addComponent(btnOK1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnOKSlave, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(39, 39, 39)
-                                .addComponent(btnACQ1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(67, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(349, 349, 349)
-                    .addComponent(voyant1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(1137, Short.MAX_VALUE)))
+                                .addComponent(btnACQ1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(progBarreSlave, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(testBarreSlave, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(73, 73, 73))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(voyantSlave, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(318, 318, 318))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -985,28 +985,36 @@ public class Interface extends javax.swing.JFrame implements Observer {
                     .addComponent(titre, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statutPGRM, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
+                                .addGap(32, 32, 32)
                                 .addComponent(voyant, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(progBarre, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(progBarre1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(voyantSlave, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(testBarre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(testBarre1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(27, 27, 27)
+                                .addComponent(progBarre, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35)
+                                .addComponent(testBarre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(progBarreSlave, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(testBarreSlave, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(5, 5, 5)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
                                 .addComponent(console, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(console1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(consoleSlave, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1022,27 +1030,21 @@ public class Interface extends javax.swing.JFrame implements Observer {
                                 .addGap(26, 26, 26))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnNOK1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnLancer1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnOK1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnNOKSlave, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnLancerSlave, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnOKSlave, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnACQ1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(38, 38, 38)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnEffacer1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnProg1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnTester1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnEffacerSlave, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnProgSlave, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnTesterSlave, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(15, 15, 15))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
                         .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)))
                 .addComponent(version)
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(175, 175, 175)
-                    .addComponent(voyant1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(453, Short.MAX_VALUE)))
         );
 
         pack();
@@ -1529,33 +1531,33 @@ public class Interface extends javax.swing.JFrame implements Observer {
 
     }//GEN-LAST:event_btnACQActionPerformed
 
-    private void btnLancer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLancer1ActionPerformed
+    private void btnLancerSlaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLancerSlaveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnLancer1ActionPerformed
+    }//GEN-LAST:event_btnLancerSlaveActionPerformed
 
-    private void btnOK1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOK1ActionPerformed
+    private void btnOKSlaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKSlaveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnOK1ActionPerformed
+    }//GEN-LAST:event_btnOKSlaveActionPerformed
 
-    private void btnNOK1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNOK1ActionPerformed
+    private void btnNOKSlaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNOKSlaveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnNOK1ActionPerformed
+    }//GEN-LAST:event_btnNOKSlaveActionPerformed
 
     private void btnACQ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnACQ1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnACQ1ActionPerformed
 
-    private void btnProg1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProg1ActionPerformed
+    private void btnProgSlaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProgSlaveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnProg1ActionPerformed
+    }//GEN-LAST:event_btnProgSlaveActionPerformed
 
-    private void btnEffacer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEffacer1ActionPerformed
+    private void btnEffacerSlaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEffacerSlaveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnEffacer1ActionPerformed
+    }//GEN-LAST:event_btnEffacerSlaveActionPerformed
 
-    private void btnTester1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTester1ActionPerformed
+    private void btnTesterSlaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTesterSlaveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnTester1ActionPerformed
+    }//GEN-LAST:event_btnTesterSlaveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1617,24 +1619,24 @@ public class Interface extends javax.swing.JFrame implements Observer {
     private javax.swing.JMenuItem btnConnexion;
     private javax.swing.JMenuItem btnDeconnexion;
     private javax.swing.JButton btnEffacer;
-    private javax.swing.JButton btnEffacer1;
+    private javax.swing.JButton btnEffacerSlave;
     private javax.swing.JMenuItem btnFermer;
     private javax.swing.JButton btnFermerAide;
     private javax.swing.JButton btnFermerParams;
     private javax.swing.JButton btnLancer;
-    private javax.swing.JButton btnLancer1;
+    private javax.swing.JButton btnLancerSlave;
     private javax.swing.JButton btnNOK;
-    private javax.swing.JButton btnNOK1;
+    private javax.swing.JButton btnNOKSlave;
     private javax.swing.JButton btnOK;
-    private javax.swing.JButton btnOK1;
+    private javax.swing.JButton btnOKSlave;
     private javax.swing.JButton btnProg;
-    private javax.swing.JButton btnProg1;
+    private javax.swing.JButton btnProgSlave;
     private javax.swing.JButton btnSelectBinaryLoc;
     private javax.swing.JButton btnSelectLocationProg;
     private javax.swing.JButton btnTester;
-    private javax.swing.JButton btnTester1;
+    private javax.swing.JButton btnTesterSlave;
     private javax.swing.JLabel console;
-    private javax.swing.JLabel console1;
+    private javax.swing.JLabel consoleSlave;
     private javax.swing.ButtonGroup groupBaud;
     private javax.swing.ButtonGroup groupBits;
     private javax.swing.ButtonGroup groupParity;
@@ -1670,7 +1672,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
     private javax.swing.JRadioButtonMenuItem parityNone;
     private javax.swing.JRadioButtonMenuItem parityOdd;
     private javax.swing.JProgressBar progBarre;
-    private javax.swing.JProgressBar progBarre1;
+    private javax.swing.JProgressBar progBarreSlave;
     private javax.swing.JLabel progLocLabel;
     private javax.swing.JFileChooser programmerLoc;
     private javax.swing.JLabel statutPGRM;
@@ -1679,7 +1681,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
     private javax.swing.JRadioButtonMenuItem stop1;
     private javax.swing.JRadioButtonMenuItem stop2;
     private javax.swing.JProgressBar testBarre;
-    private javax.swing.JProgressBar testBarre1;
+    private javax.swing.JProgressBar testBarreSlave;
     private javax.swing.JLabel titre;
     private javax.swing.JLabel titreLabBLE;
     private javax.swing.JLabel titreLabHex;
@@ -1688,7 +1690,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
     private javax.swing.JLabel version;
     private javax.swing.JMenuItem voirAide;
     private javax.swing.JLabel voyant;
-    private javax.swing.JLabel voyant1;
+    private javax.swing.JLabel voyantSlave;
     // End of variables declaration//GEN-END:variables
 
     private void testParamsProg() {
