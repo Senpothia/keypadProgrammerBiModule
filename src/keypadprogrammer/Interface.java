@@ -1051,6 +1051,9 @@ public class Interface extends javax.swing.JFrame implements Observer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProgActionPerformed
+        
+        programmer(true);
+        /*
         if (!testActif) {
 
             if (!confirmationParams) {
@@ -1122,7 +1125,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
             console.setText("Réponse OK");
 
         }
-
+        */
     }//GEN-LAST:event_btnProgActionPerformed
 
     private void btnEffacerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEffacerActionPerformed
@@ -1431,7 +1434,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
             public void run() {
 
                 try {
-                    int comm = connecteur.program(hexLocation, bleLocation, envVariable, progLocation);
+                    int comm = connecteur.program(hexLocation, bleLocation, envVariable, progLocation, true);
 
                     if (comm == -1) {
 
@@ -1548,7 +1551,8 @@ public class Interface extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_btnACQ1ActionPerformed
 
     private void btnProgSlaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProgSlaveActionPerformed
-        // TODO add your handling code here:
+        
+        programmer(false);
     }//GEN-LAST:event_btnProgSlaveActionPerformed
 
     private void btnEffacerSlaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEffacerSlaveActionPerformed
@@ -2453,5 +2457,81 @@ public class Interface extends javax.swing.JFrame implements Observer {
                 Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+
+    private void programmer(Boolean master) {
+
+        if (!testActif) {
+
+            if (!confirmationParams) {
+
+                boolean confirmation = confirmeParams();
+                if (!confirmation) {
+
+                    return;
+
+                } else {
+
+                    confirmationParams = true;
+                }
+            }
+
+            console.setText("Programmation en cours");
+            programmationActive = true;
+            progBarre.setVisible(true);
+            testBarre.setVisible(true);
+            voyant.setBackground(Color.YELLOW);
+
+            Thread t = new Thread() {
+                public void run() {
+
+                    try {
+                        int comm = connecteur.program(hexLocation, bleLocation, envVariable, progLocation, master);
+                        System.out.println("Retour programmation. Code reçu: " + comm);
+                        if (comm == -1) {
+
+                            alerteRS232();
+
+                        }
+
+                        if (comm == -2) {
+
+                            console.setText("Erreur de programmation");
+                            voyant.setBackground(Color.red);
+                            connecteur.envoyerData(Constants.ERR_PROG);
+                            programmationActive = true;
+
+                        }
+
+                        if (comm == 1) {
+
+                            console.setText("Programmation terminée!");
+                            voyant.setBackground(Color.GREEN);
+                            connecteur.envoyerData(Constants.END_PROG);
+                            programmationActive = true;
+
+                        }
+
+                    } catch (IOException ex) {
+                        Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            };
+            t.start();
+
+        } else {
+
+            int comm = connecteur.envoyerData(Constants.OK);
+
+            if (comm == -1) {
+
+                alerteRS232();
+
+            }
+
+            console.setText("Réponse OK");
+
+        }
+
     }
 }

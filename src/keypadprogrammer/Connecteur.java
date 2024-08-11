@@ -233,12 +233,24 @@ public class Connecteur extends Observable {
 
     }
 
-    public int program(String hexLocation, String bleLocation, boolean envVariable, String programmerLocation) throws IOException {
-        
-       
-        System.out.println("tranmission ordre relais 8");
-        int com = envoyerData(Constants.PROG);
-        programmationCompleted(Constants.PROG_START);
+    public int program(String hexLocation, String bleLocation, boolean envVariable, String programmerLocation, Boolean master) throws IOException {
+
+        //System.out.println("tranmission ordre relais 8");
+        int com;
+        if (master) {
+            com = envoyerData(Constants.PROG);
+
+        } else {
+
+            com = envoyerData(Constants.PROG_SLAVE);
+        }
+
+        if (master) {
+            programmationCompleted(Constants.PROG_START);
+        } else {
+            programmationCompleted(Constants.PROG_START_SLAVE);
+        }
+
         if (com == -1) {
 
             return -1;
@@ -261,11 +273,19 @@ public class Connecteur extends Observable {
 
             if (control1 == 1 || control1 == 0) {
 
-                programmationCompleted(Constants.PROG_SUCCESS_ETAPE1);
+                if (master) {
+                    programmationCompleted(Constants.PROG_SUCCESS_ETAPE1);
+                } else {
+                    programmationCompleted(Constants.PROG_SUCCESS_ETAPE1_SLAVE);
+                }
 
             } else {
 
-                programmationCompleted(Constants.PROG_UNSUCCESS_ETAPE1);
+                if (master) {
+                    programmationCompleted(Constants.PROG_UNSUCCESS_ETAPE1);
+                } else {
+                    programmationCompleted(Constants.PROG_UNSUCCESS_ETAPE1);
+                }
                 System.out.println("retour code erreur etape 1");
                 return -3;
 
@@ -284,7 +304,11 @@ public class Connecteur extends Observable {
 
             if (control2 == 1) {
 
-                programmationCompleted(Constants.PROG_SUCCESS_ETAPE2);
+                if (master) {
+                    programmationCompleted(Constants.PROG_SUCCESS_ETAPE2);
+                } else {
+                    programmationCompleted(Constants.PROG_SUCCESS_ETAPE2_SLAVE);
+                }
 
             } else {
 
@@ -302,7 +326,11 @@ public class Connecteur extends Observable {
             System.out.println("codeControl 3: " + control3);
             if (control3 == 1) {
 
-                programmationCompleted(Constants.PROG_SUCCESS_ETAPE3);
+                if (master) {
+                    programmationCompleted(Constants.PROG_SUCCESS_ETAPE3);
+                } else {
+                    programmationCompleted(Constants.PROG_SUCCESS_ETAPE3_SLAVE);
+                }
 
             } else {
 
@@ -322,7 +350,11 @@ public class Connecteur extends Observable {
 
             if (control4 == 1) {
 
-                programmationCompleted(Constants.PROG_SUCCESS_ETAPE4);
+                if (master) {
+                    programmationCompleted(Constants.PROG_SUCCESS_ETAPE4);
+                } else {
+                    programmationCompleted(Constants.PROG_SUCCESS_ETAPE4_SLAVE);
+                }
 
             } else {
 
@@ -333,9 +365,13 @@ public class Connecteur extends Observable {
         } else {
 
         }
-         
+
         tempo(3000); // 5000 -> valeur validée
-        programmationCompleted(Constants.PROG_SUCCESS);
+        if (master) {
+            programmationCompleted(Constants.PROG_SUCCESS);
+        } else {
+            programmationCompleted(Constants.PROG_SUCCESS_SLAVE);
+        }
         envoyerData(Constants.END_PROG);
         return 1;
 
@@ -362,7 +398,7 @@ public class Connecteur extends Observable {
         }
 
         tempo(5000);
-
+        
         programmationCompleted(Constants.ERASE_SUCCESS);
         envoyerData(Constants.END_ERASE);
 

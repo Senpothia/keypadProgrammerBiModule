@@ -58,11 +58,11 @@ public class Constants {
     // Repertoire des logs
     static String LOG_DIRECTORY = ".//logs";
 
-    // Signalisation état de programmation 
+    // Signalisation état de programmation maitre
     static Integer PROG_SUCCESS = 10;
     static Integer PROG_START = 77;
 
-    // Messages en provenance du connecteur sur l'état de la programmation
+    // Messages en provenance du connecteur sur l'état de la programmation - maître
     static Integer PROG_SUCCESS_ETAPE1 = 11;
     static Integer PROG_SUCCESS_ETAPE2 = 12;
     static Integer PROG_SUCCESS_ETAPE3 = 13;
@@ -75,6 +75,25 @@ public class Constants {
 
     static Integer ERASE_SUCCESS = 50;
     static Integer ERASE_UNSUCCESS = 55;
+    
+    // Signalisation état de programmation esclave
+    static Integer PROG_SUCCESS_SLAVE = 101;
+    static Integer PROG_START_SLAVE = 771;
+
+    // Messages en provenance du connecteur sur l'état de la programmation - Esclave
+    static Integer PROG_SUCCESS_ETAPE1_SLAVE = 111;
+    static Integer PROG_SUCCESS_ETAPE2_SLAVE = 121;
+    static Integer PROG_SUCCESS_ETAPE3_SLAVE = 131;
+    static Integer PROG_SUCCESS_ETAPE4_SLAVE = 141;
+
+    static Integer PROG_UNSUCCESS_ETAPE1_SLAVE = 911;
+    static Integer PROG_UNSUCCESS_ETAPE2_SLAVE = 921;
+    static Integer PROG_UNSUCCESS_ETAPE3_SLAVE = 931;
+    static Integer PROG_UNSUCCESS_ETAPE4_SLAVE = 941;
+
+    static Integer ERASE_SUCCESS_SLAVE = 501;
+    static Integer ERASE_UNSUCCESS_SLAVE= 551;
+
 
     // Signalisation résultats des étapes de test
     //********************************************************************************************************
