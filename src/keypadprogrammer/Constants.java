@@ -14,6 +14,8 @@ import java.util.logging.Logger;
  */
 public class Constants {
 
+    // codes transmis vers l'automate
+    // code transmis au module maître
     static String RESET_HARDWARE = "0";
     static String START = "1";
     static String AQC = "4";
@@ -25,6 +27,19 @@ public class Constants {
     static String END_ERASE = "5";
     static String ERR_PROG = "6";
 
+    // code transmis au module esclave
+    static String RESET_HARDWARE_SLAVE = "x";
+    static String START_SLAVE = "a";
+    static String AQC_SLAVE = "d";
+    static String OK_SLAVE = "b";
+    static String KO_SLAVE = "c";
+    static String PROG_SLAVE = "g";
+    static String ERASE_SLAVE = "h";
+    static String END_PROG_SLAVE = "i";
+    static String END_ERASE_SLAVE = "e";
+    static String ERR_PROG_SLAVE = "f";
+
+    // Messages en provenance de l'automate - module maître
     static String RESPONSE = "@:ACQ";
     static String FIN = "@:END";
     static String ERREUR = "@:ERROR:";
@@ -32,12 +47,22 @@ public class Constants {
     static String CONFORME = "@:OK";
     static String DEFAUT = "@:KO";
 
+     // Messages en provenance de l'automate - module esclave
+    static String RESPONSE_SLAVE = "@:ACQ_SLAVE";
+    static String FIN_SLAVE = "@:END_SLAVE";
+    static String ERREUR_SLAVE = "@:ERROR_SLAVE:";
+    static String INTERROGATION_SLAVE = "@INTER_SLAVE:";
+    static String CONFORME_SLAVE = "@:OK_SLAVE";
+    static String DEFAUT_SLAVE = "@:KO_SLAVE";
+    
+    // Repertoire des logs
     static String LOG_DIRECTORY = ".//logs";
 
     // Signalisation état de programmation 
     static Integer PROG_SUCCESS = 10;
     static Integer PROG_START = 77;
 
+    // Messages en provenance du connecteur sur l'état de la programmation
     static Integer PROG_SUCCESS_ETAPE1 = 11;
     static Integer PROG_SUCCESS_ETAPE2 = 12;
     static Integer PROG_SUCCESS_ETAPE3 = 13;
@@ -71,11 +96,10 @@ public class Constants {
 
     //********************************************************************************************************
     // ERREURS TRACE3
-    
-     static String E1_LOG3 = "Error: FUS_STATE_ERR_UNKNOWN";
-     
-     static String[] ERREURS_LOG3 = {E1_LOG3};
- 
+    static String E1_LOG3 = "Error: FUS_STATE_ERR_UNKNOWN";
+
+    static String[] ERREURS_LOG3 = {E1_LOG3};
+
     // REQUIS TRACE3
     static String R1_LOG3 = "Success with Time elapsed during Reconnect:";
     static String R2_LOG3 = "FusStartWS activated successfully";
