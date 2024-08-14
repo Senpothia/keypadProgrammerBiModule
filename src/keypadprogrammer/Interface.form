@@ -744,7 +744,7 @@
                               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                               <Component id="btnOKSlave" min="-2" pref="114" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                              <Component id="btnACQ1" min="-2" pref="114" max="-2" attributes="0"/>
+                              <Component id="btnACQSlave" min="-2" pref="114" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -845,7 +845,7 @@
                                   <Component id="btnNOKSlave" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                                   <Component id="btnLancerSlave" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                                   <Component id="btnOKSlave" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
-                                  <Component id="btnACQ1" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                                  <Component id="btnACQSlave" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -1211,7 +1211,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNOKSlaveActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnACQ1">
+    <Component class="javax.swing.JButton" name="btnACQSlave">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1227,7 +1227,7 @@
         <Property name="contentAreaFilled" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnACQ1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnACQSlaveActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnProgSlave">

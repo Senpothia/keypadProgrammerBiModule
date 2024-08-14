@@ -52,6 +52,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
     private boolean programmationActive = false;
     private boolean auto = true;
     private boolean AttenteReponseOperateur = false;
+    private boolean AttenteReponseOperateurSlave = false;
 
     public static Initializer initializer = new Initializer();  // Charge les propriétés du fichier properties contenant les paramètres de programmation
     public static Initialisation initialisation;          // Centralise les données rapportées par l'initializer
@@ -232,7 +233,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
         btnLancerSlave = new javax.swing.JButton();
         btnOKSlave = new javax.swing.JButton();
         btnNOKSlave = new javax.swing.JButton();
-        btnACQ1 = new javax.swing.JButton();
+        btnACQSlave = new javax.swing.JButton();
         btnProgSlave = new javax.swing.JButton();
         btnEffacerSlave = new javax.swing.JButton();
         btnTesterSlave = new javax.swing.JButton();
@@ -659,15 +660,15 @@ public class Interface extends javax.swing.JFrame implements Observer {
             }
         });
 
-        btnACQ1.setBackground(new java.awt.Color(255, 255, 255));
-        btnACQ1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnACQ1.setForeground(new java.awt.Color(51, 0, 255));
-        btnACQ1.setText("ACQ");
-        btnACQ1.setBorderPainted(false);
-        btnACQ1.setContentAreaFilled(false);
-        btnACQ1.addActionListener(new java.awt.event.ActionListener() {
+        btnACQSlave.setBackground(new java.awt.Color(255, 255, 255));
+        btnACQSlave.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnACQSlave.setForeground(new java.awt.Color(51, 0, 255));
+        btnACQSlave.setText("ACQ");
+        btnACQSlave.setBorderPainted(false);
+        btnACQSlave.setContentAreaFilled(false);
+        btnACQSlave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnACQ1ActionPerformed(evt);
+                btnACQSlaveActionPerformed(evt);
             }
         });
 
@@ -957,7 +958,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
                                 .addGap(45, 45, 45)
                                 .addComponent(btnOKSlave, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(39, 39, 39)
-                                .addComponent(btnACQ1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnACQSlave, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
@@ -1033,7 +1034,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
                                     .addComponent(btnNOKSlave, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnLancerSlave, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnOKSlave, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnACQ1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnACQSlave, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(38, 38, 38)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(btnEffacerSlave, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1051,7 +1052,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProgActionPerformed
-        
+
         programmer(true);
         /*
         if (!testActif) {
@@ -1125,7 +1126,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
             console.setText("Réponse OK");
 
         }
-        */
+         */
     }//GEN-LAST:event_btnProgActionPerformed
 
     private void btnEffacerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEffacerActionPerformed
@@ -1546,12 +1547,12 @@ public class Interface extends javax.swing.JFrame implements Observer {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnNOKSlaveActionPerformed
 
-    private void btnACQ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnACQ1ActionPerformed
+    private void btnACQSlaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnACQSlaveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnACQ1ActionPerformed
+    }//GEN-LAST:event_btnACQSlaveActionPerformed
 
     private void btnProgSlaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProgSlaveActionPerformed
-        
+
         programmer(false);
     }//GEN-LAST:event_btnProgSlaveActionPerformed
 
@@ -1619,7 +1620,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
     private javax.swing.JFileChooser bleLoc;
     private javax.swing.JLabel bleLocLabel;
     private javax.swing.JButton btnACQ;
-    private javax.swing.JButton btnACQ1;
+    private javax.swing.JButton btnACQSlave;
     private javax.swing.JMenuItem btnConnexion;
     private javax.swing.JMenuItem btnDeconnexion;
     private javax.swing.JButton btnEffacer;
@@ -2035,38 +2036,150 @@ public class Interface extends javax.swing.JFrame implements Observer {
 
                 }
 
-                if (result) {
+                // Fin traitement message pour test maitre
+                //------------------------------------------------------------------
+                // Traitement message pour test escalve
+                if (inputLine.trim().startsWith("-> TEST CONFORME_SLAVE")) {
 
-                } else {
+                    messageConsoleSlave("TEST CONFORME - EN ATTENTE ACQUITTEMENT");
+                    activerBtnAttenteACQ();
+                    voyantTestOK(true);
 
                 }
 
+                if (inputLine.trim().startsWith("-> TEST MANUEL_SLAVE")) {
+
+                    messageConsole("TEST MANUEL EN COURS");
+                    auto = false;
+                    voyant.setBackground(Color.BLUE);
+                    btnTester.setEnabled(false);
+                    btnTester.setBackground(Color.GRAY);
+                    btnProg.setEnabled(false);
+                    btnProg.setBackground(Color.GRAY);
+                    btnEffacer.setEnabled(false);
+                    btnEffacer.setBackground(Color.GRAY);
+
+                }
+
+                if (inputLine.trim().startsWith("-> FIN TEST MANUEL_SLAVE")) {
+
+                    System.out.println("test manuel acquitté1");
+                    messageConsole("FIN TEST MANUEL");
+                    voyant.setBackground(Color.GRAY);
+                    //inhibBtn();
+                    activerBtnTester(true);
+                    activerBtnProgrammer(auto);
+
+                }
+
+                if (inputLine.trim().startsWith("-> ERREUR_SLAVE:")) {
+
+                    System.out.println("Signalisation erreur!");
+                    messageConsole(inputLine.trim());
+                    activerBtnAttenteACQ();
+                    voyantTestOK(false);
+                    System.out.println("testActif  =" + testActif);
+
+                }
+
+                if (inputLine.trim().startsWith("-> PROGRAMMATION_SLAVE TERMINEE")) {
+
+                    System.out.println("programmation terminée");
+                    messageConsole(inputLine.trim());
+                    System.out.println("testActif  =" + testActif);
+
+                }
+
+                if (inputLine.trim().startsWith("-> EFFACEMENT_SLAVE TERMINE")) {
+
+                    System.out.println("effacement terminé");
+                    messageConsole(inputLine.trim());
+                    activerBtnAttenteLancement();
+                    voyantTestEnCours(false);
+                    System.out.println("testActif  =" + testActif);
+
+                }
+
+                // traitement des résultats aux étapes de test
+                if (inputLine.trim().startsWith("-> TEST_SLAVE")) {
+
+                    AttenteReponseOperateur = false;
+                    String[] tab_SLAVE = inputLine.trim().split(":");
+                    int etape_SLAVE = Integer.parseInt(tab[1]);
+                    boolean result_SLAVE = Boolean.parseBoolean(tab[2]);
+                    System.out.println("Etape: " + etape);
+                    console.setText("Etape: " + etape);
+
+                    if (etape < 18 || etape > 1) {
+
+                        testBarre.setValue(etape * 5);
+
+                    }
+
+                    if (etape_SLAVE == 12 || etape == 16) {
+
+                        AttenteReponseOperateur = true;
+
+                        if (etape_SLAVE == 12) {
+
+                            console.setText("EN ATTENTE VALIDATION LEDS");
+                        }
+
+                        if (etape_SLAVE > 16) {
+
+                            console.setText("EN ATTENTE VALIDATION BLUETOOTH");
+                        }
+                        clignottementVoyant();
+
+                    }
+
+                    if (etape_SLAVE == 18) {
+
+                        testBarre.setValue(100);
+                        testBarre.setString("Test terminé!");
+                        testBarre.setStringPainted(true);
+                        activerBtnAttenteACQ();
+                        voyantTestOK(true);
+
+                    }
+
+                    // Fin traitement message pour test esclave
+                    //---------------------------------------------------------------------------------------
+                    if (result_SLAVE) {
+
+                    } else {
+
+                    }
+
+                }
+
+                // Fin traitement mode auto 
+                //------------------------------------------------------------------------------------------------
+            } else {
+
+                if (inputLine.trim().startsWith("-> FIN TEST MANUEL")) {
+
+                    System.out.println("test manuel acquitté2");
+                    messageConsole("FIN TEST MANUEL");
+                    voyant.setBackground(Color.GRAY);
+                    //activerBtnAttenteLancement();
+                    activerBtnTester(true);
+                    activerBtnProgrammer(true);
+
+                }
             }
 
-        } else {
+            if (inputLine.trim().startsWith("-> TEST ACQUITTE")) {
 
-            if (inputLine.trim().startsWith("-> FIN TEST MANUEL")) {
-
-                System.out.println("test manuel acquitté2");
-                messageConsole("FIN TEST MANUEL");
+                messageConsole("TEST ACQUITTE");
                 voyant.setBackground(Color.GRAY);
                 //activerBtnAttenteLancement();
                 activerBtnTester(true);
                 activerBtnProgrammer(true);
 
             }
-        }
-
-        if (inputLine.trim().startsWith("-> TEST ACQUITTE")) {
-
-            messageConsole("TEST ACQUITTE");
-            voyant.setBackground(Color.GRAY);
-            //activerBtnAttenteLancement();
-            activerBtnTester(true);
-            activerBtnProgrammer(true);
 
         }
-
     }
 
     private void activerBtnReponseOp(boolean active) {
@@ -2150,6 +2263,12 @@ public class Interface extends javax.swing.JFrame implements Observer {
     private void messageConsole(String message) {
 
         console.setText(message);
+
+    }
+
+    private void messageConsoleSlave(String message) {
+
+        consoleSlave.setText(message);
 
     }
 
@@ -2279,6 +2398,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
     }
 
     // Fonction d'activation des boutons selon phase en cours
+    // Bouton module maitre
     void activerBtnAttenteLancement() {
 
         activerBtnLancer(true);
@@ -2459,6 +2579,191 @@ public class Interface extends javax.swing.JFrame implements Observer {
         }
     }
 
+    // Fin pilotage des bouton du module maitre
+    //-----------------------------------------------------------------------------------------------------
+    // Pilotage des bouton du module esclave
+    void activerBtnAttenteLancementSlave() {
+
+        activerBtnLancerSlave(true);
+        activerBtnACQSlave(false);
+        activerBtnEffacerSlave(false);
+        activerBtnOKSlave(false);
+        activerBtnNOKSlave(false);
+        activerBtnTesterSlave(false);
+        activerBtnProgrammerSlave(false);
+
+    }
+
+    void activerBtnAttenteACQSlave() {
+
+        activerBtnLancerSlave(false);
+        activerBtnACQSlave(true);
+        activerBtnEffacerSlave(false);
+        activerBtnOKSlave(false);
+        activerBtnNOKSlave(false);
+        activerBtnTesterSlave(false);
+        activerBtnProgrammerSlave(false);
+
+    }
+
+    void activerBtnTestEnCoursSlave() {
+
+        activerBtnLancerSlave(false);
+        activerBtnACQSlave(false);
+        activerBtnEffacerSlave(false);
+        activerBtnOKSlave(true);
+        activerBtnNOKSlave(true);
+        activerBtnTesterSlave(false);
+        activerBtnProgrammerSlave(false);
+
+    }
+
+    void inhibBtnSlave() {
+
+        activerBtnLancerSlave(false);
+        activerBtnACQSlave(false);
+        activerBtnEffacerSlave(false);
+        activerBtnOKSlave(false);
+        activerBtnNOKSlave(false);
+        activerBtnTesterSlave(false);
+        activerBtnProgrammerSlave(false);
+
+    }
+
+    // Fonctions d'activation des boutons
+    void activerBtnLancerSlave(boolean active) {
+
+        btnLancerSlave.setOpaque(true);
+        if (active) {
+
+            btnLancerSlave.setEnabled(true);
+            btnLancerSlave.setBackground(new Color(163, 194, 240));
+
+        } else {
+
+            btnLancerSlave.setEnabled(false);
+            btnLancerSlave.setBackground(Color.GRAY);
+
+        }
+
+    }
+
+    void activerBtnOKSlave(boolean active) {
+
+        btnOKSlave.setOpaque(true);
+        if (active) {
+
+            btnOKSlave.setEnabled(true);
+            btnOKSlave.setBackground(new Color(163, 194, 240));
+
+        } else {
+
+            btnOKSlave.setEnabled(false);
+            btnOKSlave.setBackground(Color.GRAY);
+
+        }
+    }
+
+    void activerBtnNOKSlave(boolean active) {
+
+        btnNOKSlave.setOpaque(true);
+        if (active) {
+
+            btnNOKSlave.setEnabled(true);
+            btnNOKSlave.setBackground(new Color(163, 194, 240));
+
+        } else {
+
+            btnNOKSlave.setEnabled(false);
+            btnNOKSlave.setBackground(Color.GRAY);
+
+        }
+    }
+
+    void activerBtnTesterSlave(boolean active) {
+
+        btnTesterSlave.setOpaque(true);
+        if (active) {
+
+            btnTesterSlave.setEnabled(true);
+            btnTesterSlave.setBackground(new Color(163, 194, 240));
+
+        } else {
+
+            btnTesterSlave.setEnabled(false);
+            btnTesterSlave.setBackground(Color.GRAY);
+
+        }
+    }
+
+    void activerBtnACQSlave(boolean active) {
+
+        btnACQSlave.setOpaque(true);
+        if (active) {
+
+            btnACQSlave.setEnabled(true);
+            btnACQSlave.setBackground(new Color(163, 194, 240));
+
+        } else {
+
+            btnACQSlave.setEnabled(false);
+            btnACQSlave.setBackground(Color.GRAY);
+
+        }
+    }
+
+    void activerBtnProgrammerSlave(boolean active) {
+
+        btnProgSlave.setOpaque(true);
+        if (active) {
+
+            btnProgSlave.setEnabled(true);
+            btnProgSlave.setBackground(new Color(163, 194, 240));
+
+        } else {
+
+            btnProgSlave.setEnabled(false);
+            btnProgSlave.setBackground(Color.GRAY);
+
+        }
+    }
+
+    void activerBtnEffacerSlave(boolean active) {
+
+        btnEffacerSlave.setOpaque(true);
+        if (active) {
+
+            btnEffacerSlave.setEnabled(true);
+            btnEffacerSlave.setBackground(new Color(163, 194, 240));
+
+        } else {
+
+            btnEffacerSlave.setEnabled(false);
+            btnEffacerSlave.setBackground(Color.GRAY);
+
+        }
+    }
+
+    private void clignottementVoyantSlave() {
+
+        while (AttenteReponseOperateurSlave) {
+            voyantSlave.setBackground(Color.MAGENTA);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            voyantSlave.setBackground(Color.YELLOW);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    //-----------------------------------------------------------------------------------------------------
+    // Fonction de programmation module maître
     private void programmer(Boolean master) {
 
         if (!testActif) {
@@ -2530,6 +2835,85 @@ public class Interface extends javax.swing.JFrame implements Observer {
             }
 
             console.setText("Réponse OK");
+
+        }
+
+    }
+    
+    
+     //-----------------------------------------------------------------------------------------------------
+    // Fonction de programmation module maître
+    private void programmerSlave(Boolean master) {
+
+        if (!testActif) {
+
+            if (!confirmationParams) {
+
+                boolean confirmation = confirmeParams();
+                if (!confirmation) {
+
+                    return;
+
+                } else {
+
+                    confirmationParams = true;
+                }
+            }
+
+            consoleSlave.setText("Programmation en cours");
+            programmationActive = true;
+            progBarreSlave.setVisible(true);
+            testBarreSlave.setVisible(true);
+            voyantSlave.setBackground(Color.YELLOW);
+
+            Thread t = new Thread() {
+                public void run() {
+
+                    try {
+                        int comm = connecteur.program(hexLocation, bleLocation, envVariable, progLocation, master);
+                        System.out.println("Retour programmation. Code reçu: " + comm);
+                        if (comm == -1) {
+
+                            alerteRS232();
+
+                        }
+
+                        if (comm == -2) {
+
+                            consoleSlave.setText("Erreur de programmation");
+                            voyantSlave.setBackground(Color.red);
+                            connecteur.envoyerData(Constants.ERR_PROG_SLAVE);
+                            programmationActive = true;
+
+                        }
+
+                        if (comm == 1) {
+
+                            consoleSlave.setText("Programmation terminée!");
+                            voyantSlave.setBackground(Color.GREEN);
+                            connecteur.envoyerData(Constants.END_PROG_SLAVE);
+                            programmationActive = true;
+
+                        }
+
+                    } catch (IOException ex) {
+                        Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            };
+            t.start();
+
+        } else {
+
+            int comm = connecteur.envoyerData(Constants.OK_SLAVE);
+
+            if (comm == -1) {
+
+                alerteRS232();
+
+            }
+
+            consoleSlave.setText("Réponse OK");
 
         }
 
