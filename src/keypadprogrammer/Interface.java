@@ -1392,15 +1392,22 @@ public class Interface extends javax.swing.JFrame implements Observer {
         int i = connecteur.makeConnection(Connecteur.portName, baudeRate, numDatabits, parity, stopBits);
         if (i == 99) {
 
+            setStatusRS232(true);
             console.setForeground(Color.BLUE);
             console.setText("Connexion réussie");
-            setStatusRS232(true);
+            consoleSlave.setForeground(Color.BLUE);
+            consoleSlave.setText("Connexion réussie");
+
             btnConnexion.setEnabled(false);
             btnDeconnexion.setEnabled(true);
+
             connexionRS232Active = true;
-            //activerBtnAttenteLancement();
+
             activerBtnTester(true);
             activerBtnProgrammer(auto);
+
+            activerBtnTesterSlave(true);
+            activerBtnProgrammerSlave(auto);
 
         } else {
 
@@ -1635,7 +1642,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
         }
         testActifSlave = true;
         auto = true;
-        voyantTestEnCours(true);
+        voyantTestEnCoursSlave(true);
         // activerBtnReponseOp(testActif);
         activerBtnTestEnCoursSlave();
 
@@ -1848,9 +1855,10 @@ public class Interface extends javax.swing.JFrame implements Observer {
         if (hexLocation == null) {
 
             console.setText("Le fichier binaire n'est pas défini!");
-            voyantSlave.setBackground(Color.GRAY);
-            consoleSlave.setText("Le fichier binaire n'est pas défini!");
             voyant.setBackground(Color.GRAY);
+
+            consoleSlave.setText("Le fichier binaire n'est pas défini!");
+            voyantSlave.setBackground(Color.GRAY);
             statutPGRM.setBackground(Color.RED);
             statutPGRM.setForeground(Color.RED);
 
@@ -1860,6 +1868,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
 
                 console.setText("Le fichier BLE n'est pas défini!");
                 voyant.setBackground(Color.GRAY);
+
                 consoleSlave.setText("Le fichier BLE n'est pas défini!");
                 voyantSlave.setBackground(Color.GRAY);
                 statutPGRM.setBackground(Color.RED);
@@ -1905,6 +1914,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
             activerBtnTester(true);
             activerBtnProgrammer(true);
             activerBtnACQ(false);
+
             activerBtnTesterSlave(true);
             activerBtnProgrammerSlave(true);
             activerBtnACQSlave(false);
@@ -2058,7 +2068,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
             System.out.println(inputLine);
             if (auto) {
 
-                console.setText(inputLine);
+                //console.setText(inputLine);
             }
 
             processRapport(inputLine);
@@ -2194,7 +2204,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
                 // Fin traitement message pour test maitre
                 //------------------------------------------------------------------
                 // Traitement message pour test escalve
-                if (inputLine.trim().startsWith("-> TEST CONFORME_SLAVE")) {
+                if (inputLine.trim().startsWith("-> SLAVE TEST CONFORME")) {
 
                     messageConsoleSlave("TEST CONFORME - EN ATTENTE ACQUITTEMENT");
                     activerBtnAttenteACQ();
@@ -2202,72 +2212,82 @@ public class Interface extends javax.swing.JFrame implements Observer {
 
                 }
 
-                if (inputLine.trim().startsWith("-> TEST MANUEL_SLAVE")) {
+                if (inputLine.trim().startsWith("-> SLAVE TEST MANUEL")) {
 
-                    messageConsole("TEST MANUEL EN COURS");
+                    messageConsoleSlave("TEST MANUEL EN COURS");
                     auto = false;
-                    voyant.setBackground(Color.BLUE);
-                    btnTester.setEnabled(false);
-                    btnTester.setBackground(Color.GRAY);
-                    btnProg.setEnabled(false);
-                    btnProg.setBackground(Color.GRAY);
-                    btnEffacer.setEnabled(false);
-                    btnEffacer.setBackground(Color.GRAY);
+                    voyantSlave.setBackground(Color.BLUE);
+                    btnTesterSlave.setEnabled(false);
+                    btnTesterSlave.setBackground(Color.GRAY);
+                    btnProgSlave.setEnabled(false);
+                    btnProgSlave.setBackground(Color.GRAY);
+                    btnEffacerSlave.setEnabled(false);
+                    btnEffacerSlave.setBackground(Color.GRAY);
 
                 }
 
-                if (inputLine.trim().startsWith("-> FIN TEST MANUEL_SLAVE")) {
+                if (inputLine.trim().startsWith("-> SLAVE FIN TEST MANUEL")) {
 
                     System.out.println("test manuel acquitté1");
-                    messageConsole("FIN TEST MANUEL");
-                    voyant.setBackground(Color.GRAY);
+                    messageConsoleSlave("FIN TEST MANUEL");
+                    voyantSlave.setBackground(Color.GRAY);
                     //inhibBtn();
-                    activerBtnTester(true);
-                    activerBtnProgrammer(auto);
+                    activerBtnTesterSlave(true);
+                    activerBtnProgrammerSlave(auto);
 
                 }
 
-                if (inputLine.trim().startsWith("-> ERREUR_SLAVE:")) {
+                if (inputLine.trim().startsWith("-> SLAVE ERREUR:")) {
 
                     System.out.println("Signalisation erreur!");
-                    messageConsole(inputLine.trim());
-                    activerBtnAttenteACQ();
-                    voyantTestOK(false);
+                    messageConsoleSlave(inputLine.trim());
+                    activerBtnAttenteACQSlave();
+                    voyantTestOKSlave(false);
                     System.out.println("testActif  =" + testActif);
 
                 }
 
-                if (inputLine.trim().startsWith("-> PROGRAMMATION_SLAVE TERMINEE")) {
+                if (inputLine.trim().startsWith("-> SLAVE PROGRAMMATION TERMINEE")) {
 
                     System.out.println("programmation terminée");
-                    messageConsole(inputLine.trim());
+                    messageConsoleSlave(inputLine.trim());
                     System.out.println("testActif  =" + testActif);
 
                 }
 
-                if (inputLine.trim().startsWith("-> EFFACEMENT_SLAVE TERMINE")) {
+                if (inputLine.trim().startsWith("-> SLAVE EFFACEMENT TERMINE")) {
 
                     System.out.println("effacement terminé");
-                    messageConsole(inputLine.trim());
-                    activerBtnAttenteLancement();
-                    voyantTestEnCours(false);
+                    messageConsoleSlave(inputLine.trim());
+                    activerBtnAttenteLancementSlave();
+                    voyantTestEnCoursSlave(false);
+                    System.out.println("testActif  =" + testActif);
+
+                }
+
+                if (inputLine.trim().startsWith("-> SLAVE RESPONSE NULL")) {
+
+                    System.out.println("Défaut communication master/slave");
+                    messageConsoleSlave(inputLine.trim());
+                    activerBtnAttenteACQSlave();
+                    voyantTestOKSlave(false);
                     System.out.println("testActif  =" + testActif);
 
                 }
 
                 // traitement des résultats aux étapes de test
-                if (inputLine.trim().startsWith("-> TEST_SLAVE")) {
+                if (inputLine.trim().startsWith("-> SLAVE TEST")) {
 
                     AttenteReponseOperateur = false;
                     String[] tab_SLAVE = inputLine.trim().split(":");
                     int etape_SLAVE = Integer.parseInt(tab[1]);
                     boolean result_SLAVE = Boolean.parseBoolean(tab[2]);
                     System.out.println("Etape: " + etape);
-                    console.setText("Etape: " + etape);
+                    consoleSlave.setText("Etape: " + etape);
 
                     if (etape < 18 || etape > 1) {
 
-                        testBarre.setValue(etape * 5);
+                        testBarreSlave.setValue(etape * 5);
 
                     }
 
@@ -2277,12 +2297,12 @@ public class Interface extends javax.swing.JFrame implements Observer {
 
                         if (etape_SLAVE == 12) {
 
-                            console.setText("EN ATTENTE VALIDATION LEDS");
+                            consoleSlave.setText("EN ATTENTE VALIDATION LEDS");
                         }
 
                         if (etape_SLAVE > 16) {
 
-                            console.setText("EN ATTENTE VALIDATION BLUETOOTH");
+                            consoleSlave.setText("EN ATTENTE VALIDATION BLUETOOTH");
                         }
                         clignottementVoyant();
 
@@ -2290,11 +2310,11 @@ public class Interface extends javax.swing.JFrame implements Observer {
 
                     if (etape_SLAVE == 18) {
 
-                        testBarre.setValue(100);
-                        testBarre.setString("Test terminé!");
-                        testBarre.setStringPainted(true);
-                        activerBtnAttenteACQ();
-                        voyantTestOK(true);
+                        testBarreSlave.setValue(100);
+                        testBarreSlave.setString("Test terminé!");
+                        testBarreSlave.setStringPainted(true);
+                        activerBtnAttenteACQSlave();
+                        voyantTestOKSlave(true);
 
                     }
 
@@ -2322,6 +2342,17 @@ public class Interface extends javax.swing.JFrame implements Observer {
                     activerBtnProgrammer(true);
 
                 }
+
+                if (inputLine.trim().startsWith("-> SLAVE FIN TEST MANUEL")) {
+
+                    System.out.println("test manuel acquitté2");
+                    messageConsoleSlave("FIN TEST MANUEL");
+                    voyantSlave.setBackground(Color.GRAY);
+                    //activerBtnAttenteLancement();
+                    activerBtnTesterSlave(true);
+                    activerBtnProgrammerSlave(true);
+
+                }
             }
 
             if (inputLine.trim().startsWith("-> TEST ACQUITTE")) {
@@ -2331,6 +2362,16 @@ public class Interface extends javax.swing.JFrame implements Observer {
                 //activerBtnAttenteLancement();
                 activerBtnTester(true);
                 activerBtnProgrammer(true);
+
+            }
+
+            if (inputLine.trim().startsWith("-> SLAVE TEST ACQUITTE")) {
+
+                messageConsoleSlave("TEST ACQUITTE");
+                voyantSlave.setBackground(Color.GRAY);
+                //activerBtnAttenteLancement();
+                activerBtnTesterSlave(true);
+                activerBtnProgrammerSlave(true);
 
             }
 
