@@ -39,7 +39,7 @@ public class Constants {
     static String END_ERASE_SLAVE = "e";
     static String ERR_PROG_SLAVE = "f";
 
-    // Messages en provenance de l'automate - module maître
+    // Messages en provenance de l'automate - gestion module maître
     static String RESPONSE = "@:ACQ";
     static String FIN = "@:END";
     static String ERREUR = "@:ERROR:";
@@ -47,7 +47,7 @@ public class Constants {
     static String CONFORME = "@:OK";
     static String DEFAUT = "@:KO";
 
-     // Messages en provenance de l'automate - module esclave
+     // Messages en provenance de l'automate - gestion du module esclave
     static String RESPONSE_SLAVE = "@:ACQ_SLAVE";
     static String FIN_SLAVE = "@:END_SLAVE";
     static String ERREUR_SLAVE = "@:ERROR_SLAVE:";
