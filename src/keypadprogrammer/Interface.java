@@ -1569,7 +1569,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
 
     private void btnACQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnACQActionPerformed
 
-        System.out.println("Acquittement");
+        System.out.println("Acquittement maitre");
         int comm = connecteur.envoyerData(Constants.AQC);
 
         if (comm == -1) {
@@ -1598,15 +1598,58 @@ public class Interface extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_btnLancerSlaveActionPerformed
 
     private void btnOKSlaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKSlaveActionPerformed
-        // TODO add your handling code here:
+
+        AttenteReponseOperateurSlave = false;
+        int comm = connecteur.envoyerData(Constants.OK_SLAVE);
+
+        if (comm == -1) {
+
+            alerteRS232();
+
+        }
+
+        consoleSlave.setText("Réponse OK");
+
     }//GEN-LAST:event_btnOKSlaveActionPerformed
 
     private void btnNOKSlaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNOKSlaveActionPerformed
-        // TODO add your handling code here:
+
+        AttenteReponseOperateurSlave = false;
+        int comm = connecteur.envoyerData(Constants.KO_SLAVE);
+        if (comm == -1) {
+
+            alerteRS232();
+
+        }
+        consoleSlave.setText("Résultat non conforme. Test terminé!");
+        voyantSlave.setBackground(Color.RED);
+
+
     }//GEN-LAST:event_btnNOKSlaveActionPerformed
 
     private void btnACQSlaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnACQSlaveActionPerformed
-        // TODO add your handling code here:
+
+        System.out.println("Acquittement esclave");
+        int comm = connecteur.envoyerData(Constants.AQC_SLAVE);
+
+        if (comm == -1) {
+
+            alerteRS232();
+
+        }
+
+        testActifSlave = false;
+        consoleSlave.setText("TEST ACQUITTE - PRET POUR NOUVEAU TEST!");
+        //activerBtnProgrammation();
+        testParamsProg();
+        voyantTestEnCoursSlave(false);
+        progBarreSlave.setValue(0);
+        progBarreSlave.setString("En attente lancement de programmation");
+        progBarreSlave.setStringPainted(true);
+        testBarreSlave.setValue(0);
+        testBarreSlave.setString("Test en attente de démarrage");
+        testBarreSlave.setStringPainted(true);
+
     }//GEN-LAST:event_btnACQSlaveActionPerformed
 
     private void btnProgSlaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProgSlaveActionPerformed
@@ -2099,7 +2142,6 @@ public class Interface extends javax.swing.JFrame implements Observer {
 
         if (auto) {
 
-            /*
             if (inputLine.trim().startsWith("-> TEST CONFORME")) {
 
                 messageConsole("TEST CONFORME - EN ATTENTE ACQUITTEMENT");
@@ -2190,263 +2232,14 @@ public class Interface extends javax.swing.JFrame implements Observer {
 
                         console.setText("EN ATTENTE VALIDATION BLUETOOTH");
                     }
-                    clignottementVoyant();
+                    //clignottementVoyant();
+                    voyant.setBackground(Color.MAGENTA);
 
                 }
 
                 if (etape == 18) {
 
-                    testBarre.setValue(100);
-                    testBarre.setString("Test terminé!");
-                    testBarre.setStringPainted(true);
-                    activerBtnAttenteACQ();
-                    voyantTestOK(true);
-
-                }
-                
-                
-
-                // Fin traitement message pour test maitre
-                //------------------------------------------------------------------
-                // Traitement message pour test escalve
-                if (inputLine.trim().startsWith("-> SLAVE TEST CONFORME")) {
-
-                    messageConsoleSlave("TEST CONFORME - EN ATTENTE ACQUITTEMENT");
-                    activerBtnAttenteACQ();
-                    voyantTestOK(true);
-
-                }
-
-                if (inputLine.trim().startsWith("-> SLAVE TEST MANUEL")) {
-
-                    messageConsoleSlave("TEST MANUEL EN COURS");
-                    auto = false;
-                    voyantSlave.setBackground(Color.BLUE);
-                    btnTesterSlave.setEnabled(false);
-                    btnTesterSlave.setBackground(Color.GRAY);
-                    btnProgSlave.setEnabled(false);
-                    btnProgSlave.setBackground(Color.GRAY);
-                    btnEffacerSlave.setEnabled(false);
-                    btnEffacerSlave.setBackground(Color.GRAY);
-
-                }
-
-                if (inputLine.trim().startsWith("-> SLAVE FIN TEST MANUEL")) {
-
-                    System.out.println("test manuel acquitté1");
-                    messageConsoleSlave("FIN TEST MANUEL");
-                    voyantSlave.setBackground(Color.GRAY);
-                    //inhibBtn();
-                    activerBtnTesterSlave(true);
-                    activerBtnProgrammerSlave(auto);
-
-                }
-                
-                
-                 if (inputLine.trim().startsWith("-> SLAVE ERREUR:")) {
-
-                    System.out.println("Signalisation erreur!");
-                    messageConsoleSlave(inputLine.trim());
-                    activerBtnAttenteACQSlave();
-                    voyantTestOKSlave(false);
-                    System.out.println("testActif  =" + testActif);
-
-                }
-                 
-                 
-                  if (inputLine.trim().startsWith("-> SLAVE PROGRAMMATION TERMINEE")) {
-
-                    System.out.println("programmation terminée");
-                    messageConsoleSlave(inputLine.trim());
-                    System.out.println("testActif  =" + testActif);
-
-                }
-                
-                   if (inputLine.trim().startsWith("-> SLAVE EFFACEMENT TERMINE")) {
-
-                    System.out.println("effacement terminé");
-                    messageConsoleSlave(inputLine.trim());
-                    activerBtnAttenteLancementSlave();
-                    voyantTestEnCoursSlave(false);
-                    System.out.println("testActif  =" + testActif);
-
-                }
-                   
-                 if (inputLine.trim().startsWith("-> SLAVE RESPONSE NULL")) {
-
-                    System.out.println("Défaut communication master/slave");
-                    messageConsoleSlave(inputLine.trim());
-                    activerBtnAttenteACQSlave();
-                    voyantTestOKSlave(false);
-                    System.out.println("testActif  =" + testActif);
-
-                }
-                
-                 // traitement des résultats aux étapes de test esclave
-                if (inputLine.trim().startsWith("-> TEST")) {
-
-                    AttenteReponseOperateur = false;
-                    String[] tabSlave = inputLine.trim().split(":");
-                    int etapeSlave = Integer.parseInt(tabSlave[1]);
-                    boolean resultSlave = Boolean.parseBoolean(tabSlave[2]);
-                    System.out.println("Etape: " + etapeSlave);
-                    console.setText("Etape: " + etapeSlave);
-
-                    if (etapeSlave < 18 || etapeSlave > 1) {
-
-                        testBarreSlave.setValue(etapeSlave * 5);
-
-                    }
-
-                    if (etapeSlave == 12 || etapeSlave == 16) {
-
-                        AttenteReponseOperateur = true;
-
-                        if (etapeSlave == 12) {
-
-                            consoleSlave.setText("EN ATTENTE VALIDATION LEDS");
-                        }
-
-                        if (etapeSlave > 16) {
-
-                            consoleSlave.setText("EN ATTENTE VALIDATION BLUETOOTH");
-                        }
-                        clignottementVoyantSlave();
-
-                    }
-
-                    if (etapeSlave == 18) {
-
-                        testBarreSlave.setValue(100);
-                        testBarreSlave.setString("Test terminé!");
-                        testBarreSlave.setStringPainted(true);
-                        activerBtnAttenteACQSlave();
-                        voyantTestOKSlave(true);
-
-                    }
-                }
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-             */
-            if (inputLine.trim().startsWith("-> TEST CONFORME")) {
-
-                messageConsole("TEST CONFORME - EN ATTENTE ACQUITTEMENT");
-                activerBtnAttenteACQ();
-                voyantTestOK(true);
-
-            }
-
-            if (inputLine.trim().startsWith("-> TEST MANUEL")) {
-
-                messageConsole("TEST MANUEL EN COURS");
-                auto = false;
-                voyant.setBackground(Color.BLUE);
-                btnTester.setEnabled(false);
-                btnTester.setBackground(Color.GRAY);
-                btnProg.setEnabled(false);
-                btnProg.setBackground(Color.GRAY);
-                btnEffacer.setEnabled(false);
-                btnEffacer.setBackground(Color.GRAY);
-
-            }
-
-            if (inputLine.trim().startsWith("-> FIN TEST MANUEL")) {
-
-                System.out.println("test manuel acquitté1");
-                messageConsole("FIN TEST MANUEL");
-                voyant.setBackground(Color.GRAY);
-                //inhibBtn();
-                activerBtnTester(true);
-                activerBtnProgrammer(auto);
-
-            }
-
-            if (inputLine.trim().startsWith("-> ERREUR:")) {
-
-                System.out.println("Signalisation erreur!");
-                messageConsole(inputLine.trim());
-                activerBtnAttenteACQ();
-                voyantTestOK(false);
-                System.out.println("testActif  =" + testActif);
-
-            }
-
-            if (inputLine.trim().startsWith("-> PROGRAMMATION TERMINEE")) {
-
-                System.out.println("programmation terminée");
-                messageConsole(inputLine.trim());
-                System.out.println("testActif  =" + testActif);
-
-            }
-
-            if (inputLine.trim().startsWith("-> EFFACEMENT TERMINE")) {
-
-                System.out.println("effacement terminé");
-                messageConsole(inputLine.trim());
-                activerBtnAttenteLancement();
-                voyantTestEnCours(false);
-                System.out.println("testActif  =" + testActif);
-
-            }
-
-            // traitement des résultats aux étapes de test maitre
-            if (inputLine.trim().startsWith("-> TEST")) {
-
-                AttenteReponseOperateur = false;
-                String[] tab = inputLine.trim().split(":");
-                int etape = Integer.parseInt(tab[1]);
-                boolean result = Boolean.parseBoolean(tab[2]);
-                System.out.println("Etape: " + etape);
-                console.setText("Etape: " + etape);
-
-                if (etape < 18 || etape > 1) {
-
-                    testBarre.setValue(etape * 5);
-
-                }
-
-                if (etape == 12 || etape == 16) {
-
-                    AttenteReponseOperateur = true;
-
-                    if (etape == 12) {
-
-                        console.setText("EN ATTENTE VALIDATION LEDS");
-                    }
-
-                    if (etape > 16) {
-
-                        console.setText("EN ATTENTE VALIDATION BLUETOOTH");
-                    }
-                    clignottementVoyant();
-
-                }
-
-                if (etape == 18) {
-
+                    voyant.setBackground(Color.YELLOW);
                     testBarre.setValue(100);
                     testBarre.setString("Test terminé!");
                     testBarre.setStringPainted(true);
@@ -2463,8 +2256,8 @@ public class Interface extends javax.swing.JFrame implements Observer {
             if (inputLine.trim().startsWith("-> SLAVE TEST CONFORME")) {
 
                 messageConsoleSlave("TEST CONFORME - EN ATTENTE ACQUITTEMENT");
-                activerBtnAttenteACQ();
-                voyantTestOK(true);
+                activerBtnAttenteACQSlave();
+                voyantTestOKSlave(true);
 
             }
 
@@ -2482,7 +2275,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
 
             }
 
-            if (inputLine.trim().startsWith("-> SLAVE FIN TEST MANUEL")) {
+            if (inputLine.trim().startsWith("-> SLAVE_TEST GET ACQ")) {
 
                 System.out.println("test manuel acquitté1");
                 messageConsoleSlave("FIN TEST MANUEL");
@@ -2530,51 +2323,53 @@ public class Interface extends javax.swing.JFrame implements Observer {
                 System.out.println("testActif  =" + testActif);
 
             }
-            
-            
-             // traitement des résultats aux étapes de test esclave
-                if (inputLine.trim().startsWith("-> SLAVETEST")) {
 
-                    AttenteReponseOperateur = false;
-                    String[] tabSlave = inputLine.trim().split(":");
-                    int etapeSlave = Integer.parseInt(tabSlave[1]);
-                    boolean resultSlave = Boolean.parseBoolean(tabSlave[2]);
-                    System.out.println("Etape: " + etapeSlave);
-                    console.setText("Etape: " + etapeSlave);
+            // traitement des résultats aux étapes de test esclave
+            if (inputLine.trim().startsWith("-> SLAVETEST")) {
 
-                    if (etapeSlave < 18 || etapeSlave > 1) {
+                AttenteReponseOperateur = false;
+                String[] tabSlave = inputLine.trim().split(":");
+                int etapeSlave = Integer.parseInt(tabSlave[1]);
+                boolean resultSlave = Boolean.parseBoolean(tabSlave[2]);
+                System.out.println("Etape: " + etapeSlave);
+                consoleSlave.setText("Etape: " + etapeSlave);
 
-                        testBarreSlave.setValue(etapeSlave * 5);
+                if (etapeSlave < 18 || etapeSlave > 1) {
 
-                    }
+                    testBarreSlave.setValue(etapeSlave * 5);
 
-                    if (etapeSlave == 12 || etapeSlave == 16) {
-
-                        AttenteReponseOperateur = true;
-
-                        if (etapeSlave == 12) {
-
-                            consoleSlave.setText("EN ATTENTE VALIDATION LEDS");
-                        }
-
-                        if (etapeSlave > 16) {
-
-                            consoleSlave.setText("EN ATTENTE VALIDATION BLUETOOTH");
-                        }
-                        clignottementVoyantSlave();
-
-                    }
-
-                    if (etapeSlave == 18) {
-
-                        testBarreSlave.setValue(100);
-                        testBarreSlave.setString("Test terminé!");
-                        testBarreSlave.setStringPainted(true);
-                        activerBtnAttenteACQSlave();
-                        voyantTestOKSlave(true);
-
-                    }
                 }
+
+                if (etapeSlave == 12 || etapeSlave == 16) {
+
+                    AttenteReponseOperateurSlave = true;
+
+                    if (etapeSlave == 12) {
+
+                        consoleSlave.setText("EN ATTENTE VALIDATION LEDS");
+                    }
+
+                    if (etapeSlave == 17) {
+
+                        consoleSlave.setText("EN ATTENTE VALIDATION BLUETOOTH");
+                    }
+
+                    //clignottementVoyantSlave();
+                    voyantSlave.setBackground(Color.MAGENTA);
+
+                }
+
+                if (etapeSlave == 18) {
+
+                    voyantSlave.setBackground(Color.YELLOW);
+                    testBarreSlave.setValue(100);
+                    testBarreSlave.setString("Test terminé!");
+                    testBarreSlave.setStringPainted(true);
+                    activerBtnAttenteACQSlave();
+                    voyantTestOKSlave(true);
+
+                }
+            }
 
             // Fin traitement mode auto 
             //------------------------------------------------------------------------------------------------

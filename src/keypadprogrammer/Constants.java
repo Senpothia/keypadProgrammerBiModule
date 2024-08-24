@@ -30,9 +30,9 @@ public class Constants {
     // code transmis au module esclave
     static String RESET_HARDWARE_SLAVE = "x";
     static String START_SLAVE = "a";
-    static String AQC_SLAVE = "d";
-    static String OK_SLAVE = "b";
-    static String KO_SLAVE = "c";
+    static String AQC_SLAVE = "w";
+    static String OK_SLAVE = "u";
+    static String KO_SLAVE = "v";
     static String PROG_SLAVE = "g";
     static String ERASE_SLAVE = "h";
     static String END_PROG_SLAVE = "i";
