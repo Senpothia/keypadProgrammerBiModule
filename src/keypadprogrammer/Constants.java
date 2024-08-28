@@ -33,11 +33,12 @@ public class Constants {
     static String AQC_SLAVE = "w";
     static String OK_SLAVE = "u";
     static String KO_SLAVE = "v";
-    static String PROG_SLAVE = "g";
+    static String PROG_SLAVE = "=";
     static String ERASE_SLAVE = "h";
-    static String END_PROG_SLAVE = "i";
+    static String END_PROG_SLAVE = "*";
     static String END_ERASE_SLAVE = "e";
     static String ERR_PROG_SLAVE = "f";
+     static String OK_PROG_SLAVE ="*";
 
     // Messages en provenance de l'automate - gestion module maître
     static String RESPONSE = "@:ACQ";

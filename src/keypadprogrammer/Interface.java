@@ -51,6 +51,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
     private boolean testActif = false;
     private boolean testActifSlave = false;
     private boolean programmationActive = false;
+    private boolean programmationActiveSlave = false;
     private boolean auto = true;
     private boolean AttenteReponseOperateur = false;
     private boolean AttenteReponseOperateurSlave = false;
@@ -1104,80 +1105,9 @@ public class Interface extends javax.swing.JFrame implements Observer {
 
     private void btnProgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProgActionPerformed
 
+        inhibBtnProgrammation();
         programmer(true);
-        /*
-        if (!testActif) {
 
-            if (!confirmationParams) {
-
-                boolean confirmation = confirmeParams();
-                if (!confirmation) {
-
-                    return;
-
-                } else {
-
-                    confirmationParams = true;
-                }
-            }
-
-            console.setText("Programmation en cours");
-            programmationActive = true;
-            progBarre.setVisible(true);
-            testBarre.setVisible(true);
-            voyant.setBackground(Color.YELLOW);
-
-            Thread t = new Thread() {
-                public void run() {
-
-                    try {
-                        int comm = connecteur.program(hexLocation, bleLocation, envVariable, progLocation);
-                        System.out.println("Retour programmation. Code reçu: " + comm);
-                        if (comm == -1) {
-
-                            alerteRS232();
-
-                        }
-
-                        if (comm == -2) {
-
-                            console.setText("Erreur de programmation");
-                            voyant.setBackground(Color.red);
-                            connecteur.envoyerData(Constants.ERR_PROG);
-                            programmationActive = true;
-
-                        }
-
-                        if (comm == 1) {
-
-                            console.setText("Programmation terminée!");
-                            voyant.setBackground(Color.GREEN);
-                            connecteur.envoyerData(Constants.END_PROG);
-                            programmationActive = true;
-
-                        }
-
-                    } catch (IOException ex) {
-                        Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            };
-            t.start();
-
-        } else {
-
-            int comm = connecteur.envoyerData(Constants.OK);
-
-            if (comm == -1) {
-
-                alerteRS232();
-
-            }
-
-            console.setText("Réponse OK");
-
-        }
-         */
     }//GEN-LAST:event_btnProgActionPerformed
 
     private void btnEffacerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEffacerActionPerformed
@@ -1653,8 +1583,8 @@ public class Interface extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_btnACQSlaveActionPerformed
 
     private void btnProgSlaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProgSlaveActionPerformed
-
-        programmer(false);
+        inhibBtnProgrammationSlave();
+        programmerSlave(false);
     }//GEN-LAST:event_btnProgSlaveActionPerformed
 
     private void btnEffacerSlaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEffacerSlaveActionPerformed
@@ -2008,6 +1938,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
 
         if (arg instanceof Integer) {
 
+            // ------------------  GESTION PROGRAMMATION MASTER   ------------------------------------
             if ((Integer) arg == Constants.PROG_SUCCESS) {
 
                 //voyant.setBackground(Color.GREEN);
@@ -2105,6 +2036,104 @@ public class Interface extends javax.swing.JFrame implements Observer {
                 activerBtnAttenteACQ();
             }
 
+            // ------------------  GESTION PROGRAMMATION SLAVE   ------------------------------------
+            if ((Integer) arg == Constants.PROG_SUCCESS_SLAVE) {
+
+                //voyant.setBackground(Color.GREEN);
+                progBarreSlave.setValue(100);
+                consoleSlave.setText("Programmation terminée!");
+            }
+
+            if ((Integer) arg == Constants.ERASE_SUCCESS_SLAVE) {
+
+                voyantSlave.setBackground(Color.GREEN);
+                progBarreSlave.setValue(100);
+                consoleSlave.setText("Effacement terminée!");
+            }
+
+            if ((Integer) arg == Constants.PROG_START_SLAVE) {
+
+                voyantSlave.setBackground(Color.YELLOW);
+                progBarreSlave.setStringPainted(true);
+                progBarreSlave.setString("Programmation en cours...");
+                progBarreSlave.setValue(0);
+                consoleSlave.setText("Programmation en cours");
+            }
+
+            if ((Integer) arg == Constants.PROG_SUCCESS_ETAPE1_SLAVE) {
+
+                voyantSlave.setBackground(Color.YELLOW);
+                progBarreSlave.setStringPainted(true);
+                progBarreSlave.setString("Programmation en cours...");
+                progBarreSlave.setValue(15);
+                consoleSlave.setText("Programmation: étape 1 terminée!");
+            }
+
+            if ((Integer) arg == Constants.PROG_SUCCESS_ETAPE2_SLAVE) {
+
+                voyantSlave.setBackground(Color.YELLOW);
+                progBarreSlave.setStringPainted(true);
+                progBarreSlave.setString("Programmation en cours...");
+                progBarreSlave.setValue(70);
+                consoleSlave.setText("Programmation: étape 2 terminée!");
+            }
+
+            if ((Integer) arg == Constants.PROG_SUCCESS_ETAPE3_SLAVE) {
+
+                voyantSlave.setBackground(Color.YELLOW);
+                progBarreSlave.setStringPainted(true);
+                progBarreSlave.setString("Programmation en cours...");
+                progBarreSlave.setValue(90);
+                consoleSlave.setText("Programmation: étape 3 terminée!");
+            }
+
+            if ((Integer) arg == Constants.PROG_SUCCESS_ETAPE4_SLAVE) {
+
+                //voyant.setBackground(Color.GREEN);
+                progBarreSlave.setString("Programmation terminée!");
+                progBarreSlave.setStringPainted(true);
+                progBarreSlave.setValue(100);
+                consoleSlave.setText("Programmation: étape 4 terminée! - Le test est en cours");
+
+            }
+
+            if ((Integer) arg == Constants.PROG_UNSUCCESS_ETAPE1_SLAVE) {
+
+                voyantSlave.setBackground(Color.RED);
+                progBarreSlave.setString("Echec programmation!");
+                progBarreSlave.setStringPainted(true);
+                consoleSlave.setText("Programmation: échec étape 1!");
+                montrerError("Vérifier positionnement carte!", "Erreur de programmation");
+                activerBtnAttenteACQSlave();
+            }
+
+            if ((Integer) arg == Constants.PROG_UNSUCCESS_ETAPE2_SLAVE) {
+
+                voyantSlave.setBackground(Color.RED);
+                progBarreSlave.setString("Echec programmation!");
+                progBarreSlave.setStringPainted(true);
+                consoleSlave.setText("Programmation: échec étape 2!");
+                activerBtnAttenteACQSlave();
+            }
+
+            if ((Integer) arg == Constants.PROG_UNSUCCESS_ETAPE3_SLAVE) {
+
+                voyantSlave.setBackground(Color.RED);
+                progBarreSlave.setString("Echec programmation!");
+                progBarreSlave.setStringPainted(true);
+                consoleSlave.setText("Programmation: échec étape 3!");
+                activerBtnAttenteACQSlave();
+            }
+
+            if ((Integer) arg == Constants.PROG_UNSUCCESS_ETAPE4_SLAVE) {
+
+                voyantSlave.setBackground(Color.RED);
+                progBarreSlave.setString("Echec programmation!");
+                progBarreSlave.setStringPainted(true);
+                consoleSlave.setText("Programmation: échec étape 4!");
+                activerBtnAttenteACQSlave();
+            }
+
         } else {
 
             String inputLine = (String) arg;
@@ -2167,7 +2196,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
             if (inputLine.trim().startsWith("-> FIN TEST MANUEL")) {
 
                 System.out.println("test manuel acquitté1");
-                messageConsole("FIN TEST MANUEL");
+                messageConsole("TEST TERMINE");
                 voyant.setBackground(Color.GRAY);
                 //inhibBtn();
                 activerBtnTester(true);
@@ -2185,11 +2214,25 @@ public class Interface extends javax.swing.JFrame implements Observer {
 
             }
 
-            if (inputLine.trim().startsWith("-> PROGRAMMATION TERMINEE")) {
+            if (inputLine.trim().startsWith("-> PROGRAMMATION MODULE 1 TERMINEE")) {
 
-                System.out.println("programmation terminée");
+                System.out.println("programmation module 1 terminée");
                 messageConsole(inputLine.trim());
                 System.out.println("testActif  =" + testActif);
+                activerBtnTester(true);
+                activerBtnProgrammer(true);
+                activerBtnProgrammerSlave(true);
+
+            }
+
+            if (inputLine.trim().startsWith("-> PROGRAMMATION MODULE 2 TERMINEE")) {
+
+                System.out.println("programmation module 2 terminée");
+                messageConsoleSlave(inputLine.trim());
+                System.out.println("testActif  =" + testActif);
+                activerBtnTesterSlave(true);
+                activerBtnProgrammer(true);
+                activerBtnProgrammerSlave(true);
 
             }
 
@@ -2252,7 +2295,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
             // Fin traitement message pour test maitre
 
             //------------------------------------------------------------------
-            // Traitement message pour test escalve
+            // Traitement message pour test esclave
             if (inputLine.trim().startsWith("-> SLAVE TEST CONFORME")) {
 
                 messageConsoleSlave("TEST CONFORME - EN ATTENTE ACQUITTEMENT");
@@ -2278,7 +2321,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
             if (inputLine.trim().startsWith("-> SLAVE_TEST GET ACQ")) {
 
                 System.out.println("test manuel acquitté1");
-                messageConsoleSlave("FIN TEST MANUEL");
+                messageConsoleSlave("FIN DE TEST");
                 voyantSlave.setBackground(Color.GRAY);
                 //inhibBtn();
                 activerBtnTesterSlave(true);
@@ -2745,6 +2788,36 @@ public class Interface extends javax.swing.JFrame implements Observer {
 
     }
 
+    void inhibBtnProgrammation() {
+
+        activerBtnLancer(false);
+        activerBtnACQ(false);
+        activerBtnEffacer(false);
+        activerBtnOK(false);
+        activerBtnNOK(false);
+        activerBtnTester(false);
+        activerBtnProgrammer(false);
+
+        activerBtnEffacerSlave(false);
+        activerBtnProgrammerSlave(false);
+
+    }
+
+    void inhibBtnProgrammationSlave() {
+
+        activerBtnLancerSlave(false);
+        activerBtnACQSlave(false);
+        activerBtnEffacerSlave(false);
+        activerBtnOKSlave(false);
+        activerBtnNOKSlave(false);
+        activerBtnTesterSlave(false);
+        activerBtnProgrammerSlave(false);
+
+        activerBtnProgrammer(false);
+        activerBtnEffacer(false);
+
+    }
+
     // Fonctions d'activation des boutons
     void activerBtnLancer(boolean active) {
 
@@ -3083,8 +3156,9 @@ public class Interface extends javax.swing.JFrame implements Observer {
                 }
             }
 
-            console.setText("Programmation en cours");
             programmationActive = true;
+
+            console.setText("Programmation en cours");
             progBarre.setVisible(true);
             testBarre.setVisible(true);
             voyant.setBackground(Color.YELLOW);
@@ -3102,19 +3176,36 @@ public class Interface extends javax.swing.JFrame implements Observer {
                         }
 
                         if (comm == -2) {
+                            if (master) {
 
-                            console.setText("Erreur de programmation");
-                            voyant.setBackground(Color.red);
-                            connecteur.envoyerData(Constants.ERR_PROG);
+                                console.setText("Erreur de programmation");
+                                voyant.setBackground(Color.red);
+                                connecteur.envoyerData(Constants.ERR_PROG);
+                            } else {
+
+                                consoleSlave.setText("Erreur de programmation");
+                                voyantSlave.setBackground(Color.red);
+                                connecteur.envoyerData(Constants.ERR_PROG);
+                            }
+
                             programmationActive = true;
 
                         }
 
                         if (comm == 1) {
 
-                            console.setText("Programmation terminée!");
-                            voyant.setBackground(Color.GREEN);
-                            connecteur.envoyerData(Constants.END_PROG);
+                            if (master) {
+
+                                console.setText("Programmation terminée!");
+                                voyant.setBackground(Color.GREEN);
+                                connecteur.envoyerData(Constants.END_PROG);
+                            } else {
+
+                                consoleSlave.setText("Programmation terminée!");
+                                voyantSlave.setBackground(Color.GREEN);
+                                connecteur.envoyerData(Constants.END_PROG_SLAVE);
+                            }
+
                             programmationActive = true;
 
                         }
@@ -3136,15 +3227,20 @@ public class Interface extends javax.swing.JFrame implements Observer {
                 alerteRS232();
 
             }
+            if (master) {
 
-            console.setText("Réponse OK");
+                console.setText("Réponse OK");
+            } else {
+
+                consoleSlave.setText("Réponse OK");
+            }
 
         }
 
     }
 
     //-----------------------------------------------------------------------------------------------------
-    // Fonction de programmation module maître
+    // Fonction de programmation module esclave
     private void programmerSlave(Boolean master) {
 
         if (!testActifSlave) {
@@ -3163,7 +3259,8 @@ public class Interface extends javax.swing.JFrame implements Observer {
             }
 
             consoleSlave.setText("Programmation en cours");
-            programmationActive = true;
+            programmationActiveSlave = true;
+
             progBarreSlave.setVisible(true);
             testBarreSlave.setVisible(true);
             voyantSlave.setBackground(Color.YELLOW);
@@ -3185,7 +3282,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
                             consoleSlave.setText("Erreur de programmation");
                             voyantSlave.setBackground(Color.red);
                             connecteur.envoyerData(Constants.ERR_PROG_SLAVE);
-                            programmationActive = true;
+                            programmationActiveSlave = true;
 
                         }
 
@@ -3194,7 +3291,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
                             consoleSlave.setText("Programmation terminée!");
                             voyantSlave.setBackground(Color.GREEN);
                             connecteur.envoyerData(Constants.END_PROG_SLAVE);
-                            programmationActive = true;
+                            programmationActiveSlave = true;
 
                         }
 
@@ -3208,7 +3305,7 @@ public class Interface extends javax.swing.JFrame implements Observer {
 
         } else {
 
-            int comm = connecteur.envoyerData(Constants.OK_SLAVE);
+            int comm = connecteur.envoyerData(Constants.OK_PROG_SLAVE);
 
             if (comm == -1) {
 
