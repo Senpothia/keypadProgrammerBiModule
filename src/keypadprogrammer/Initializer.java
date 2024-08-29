@@ -30,8 +30,10 @@ public class Initializer {
         String binaryLocation = progProperpies.getProperty("binaryLocation");
         String varEnv = progProperpies.getProperty("varEnv");
         String bleLocation = progProperpies.getProperty("bleLocation");
-        
-        Initialisation init = new Initialisation(programmerDirectory, varEnv, binaryLocation, bleLocation);
+        String snProgramer1 = progProperpies.getProperty("snProgramer1");;
+        String snProgramer2 = progProperpies.getProperty("snProgramer2");;
+
+        Initialisation init = new Initialisation(programmerDirectory, varEnv, binaryLocation, bleLocation, snProgramer1, snProgramer2);
 
         return init;
     }

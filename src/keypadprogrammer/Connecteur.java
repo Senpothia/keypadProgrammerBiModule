@@ -233,7 +233,7 @@ public class Connecteur extends Observable {
 
     }
 
-    public int program(String hexLocation, String bleLocation, boolean envVariable, String programmerLocation, Boolean master) throws IOException {
+    public int program(String hexLocation, String bleLocation, boolean envVariable, String programmerLocation, String snProgramer1, String snProgramer2, Boolean master) throws IOException {
 
         //System.out.println("tranmission ordre relais 8");
         int com;
@@ -267,9 +267,9 @@ public class Connecteur extends Observable {
             String commande1;
             if (master) {
 
-                commande1 = "STM32_Programmer_CLI.exe -c port=SWD sn=002800323532511431333430 s-startFUS -log .\\logs\\trace1.log";
+                commande1 = "STM32_Programmer_CLI.exe -c port=SWD sn=" + snProgramer1 + " s-startFUS -log .\\logs\\trace1.log";
             } else {
-                commande1 = "STM32_Programmer_CLI.exe -c port=SWD sn=0035003C3532511131333430 s-startFUS -log .\\logs\\trace1.log";
+                commande1 = "STM32_Programmer_CLI.exe -c port=SWD sn=" + snProgramer2 + " s-startFUS -log .\\logs\\trace1.log";
             }
             //String commande1 = "STM32_Programmer_CLI.exe -c port=SWD sn=002800323532511431333430 s-startFUS -log .\\logs\\trace1.log";
             //String commande1 = "STM32_Programmer_CLI.exe -c port=SWD sn=0035003C3532511131333430 s-startFUS -log .\\logs\\trace1.log";
@@ -309,10 +309,10 @@ public class Connecteur extends Observable {
             String commande2;
             if (master) {
 
-                commande2 = "STM32_Programmer_CLI.exe -c port=SWD sn=002800323532511431333430 -startFUS mode=UR -ob nSWboot0=0 nboot1=1 nboot0=1 -fwupgrade " + bleLocation + " 0x080CE000 firstinstall=1 -log .\\logs\\trace2.log";  // version après 07/05/2024
+                commande2 = "STM32_Programmer_CLI.exe -c port=SWD sn=" + snProgramer1 + " -startFUS mode=UR -ob nSWboot0=0 nboot1=1 nboot0=1 -fwupgrade " + bleLocation + " 0x080CE000 firstinstall=1 -log .\\logs\\trace2.log";  // version après 07/05/2024
             } else {
 
-                commande2 = "STM32_Programmer_CLI.exe -c port=SWD sn=0035003C3532511131333430 -startFUS mode=UR -ob nSWboot0=0 nboot1=1 nboot0=1 -fwupgrade " + bleLocation + " 0x080CE000 firstinstall=1 -log .\\logs\\trace2.log";  // version après 07/05/2024
+                commande2 = "STM32_Programmer_CLI.exe -c port=SWD sn=" + snProgramer2 + " -startFUS mode=UR -ob nSWboot0=0 nboot1=1 nboot0=1 -fwupgrade " + bleLocation + " 0x080CE000 firstinstall=1 -log .\\logs\\trace2.log";  // version après 07/05/2024
             }
 
             Process upgradeBLE = runtime.exec(commande2);
@@ -343,10 +343,10 @@ public class Connecteur extends Observable {
             String commande3;
             if (master) {
 
-                commande3 = "STM32_Programmer_CLI.exe -c port=SWD sn=002800323532511431333430 -startwirelessstack -log .\\logs\\trace3.log";
+                commande3 = "STM32_Programmer_CLI.exe -c port=SWD sn=" + snProgramer1 + " -startwirelessstack -log .\\logs\\trace3.log";
 
             } else {
-                commande3 = "STM32_Programmer_CLI.exe -c port=SWD sn=0035003C3532511131333430 -startwirelessstack -log .\\logs\\trace3.log";
+                commande3 = "STM32_Programmer_CLI.exe -c port=SWD sn=" + snProgramer2 + " -startwirelessstack -log .\\logs\\trace3.log";
             }
 
             Process startStack = runtime.exec(commande3);
@@ -377,10 +377,12 @@ public class Connecteur extends Observable {
             String commande4;
             if (master) {
 
-                commande4 = "STM32_Programmer_CLI.exe -c port=SWD sn=002800323532511431333430 -w " + hexLocation + " 0x080CE000 -Rst -log .\\logs\\trace4.log";
+                commande4 = "STM32_Programmer_CLI.exe -c port=SWD sn=" + snProgramer1 + " -w " + hexLocation + " 0x080CE000 -Rst -log .\\logs\\trace4.log";
 
             } else {
-                commande4 = "STM32_Programmer_CLI.exe -c port=SWD sn=0035003C3532511131333430 -w " + hexLocation + " 0x080CE000 -Rst -log .\\logs\\trace4.log";
+
+                commande4 = "STM32_Programmer_CLI.exe -c port=SWD sn=" + snProgramer2 + " -w " + hexLocation + " 0x080CE000 -Rst -log .\\logs\\trace4.log";
+
             }
 
             Process programFirmware = runtime.exec(commande4);

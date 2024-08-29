@@ -15,14 +15,21 @@ public class Initialisation {
     private String varEnv;
     private String binaryLocation;
     private String bleLocation;
+    private String snProgramer1;
+    private String snProgramer2;
 
-    public Initialisation(String programmerDirectory, String varEnv, String binaryLocation, String bleLocation) {
-
+    public Initialisation(String programmerDirectory, String varEnv, String binaryLocation, String bleLocation, String snProgramer1, String snProgramer2) {
         this.programmerDirectory = programmerDirectory;
         this.varEnv = varEnv;
         this.binaryLocation = binaryLocation;
         this.bleLocation = bleLocation;
+        this.snProgramer1 = snProgramer1;
+        this.snProgramer2 = snProgramer2;
     }
+
+   
+
+   
 
     public String getProgrammerDirectory() {
         return programmerDirectory;
@@ -55,5 +62,23 @@ public class Initialisation {
     public void setBleLocation(String bleLocation) {
         this.bleLocation = bleLocation;
     }
+
+    public String getSnProgramer1() {
+        return snProgramer1;
+    }
+
+    public void setSnProgramer1(String snProgramer1) {
+        this.snProgramer1 = snProgramer1;
+    }
+
+    public String getSnProgramer2() {
+        return snProgramer2;
+    }
+
+    public void setSnProgramer2(String snProgramer2) {
+        this.snProgramer2 = snProgramer2;
+    }
+    
+    
 
 }
